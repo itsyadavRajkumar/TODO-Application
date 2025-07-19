@@ -24,7 +24,7 @@ public class TodoServeImpl implements TodoService {
     @Override
     public TodoDto readTodoData(Long id) {
         Todo todo = todoRepo.findById(id).orElse(null);
-        return TodoMapper.entityTODto(todo);
+        return todo == null ? new TodoDto() : TodoMapper.entityTODto(todo);
     }
 
     @Override
