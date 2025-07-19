@@ -14,7 +14,7 @@ public class TodoMapper {
     public static TodoDto entityTODto(Todo todo) {
         TodoDto todoDto = new TodoDto();
         todoDto.setTitle(todo.getTitle());
-        todoDto.setDescription(todoDto.getDescription());
+        todoDto.setDescription(todo.getDescription());
         todoDto.setId(todo.getId());
         return todoDto;
     }

@@ -2,6 +2,7 @@ package com.todo.controller;
 
 import com.todo.dto.TodoDto;
 import com.todo.service.TodoService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,12 @@ public class TodoController {
 
     @GetMapping("/get/list/data")
     public ResponseEntity<?> readTodoData(@RequestParam Long id) {
-        return new ResponseEntity<>(todoService.readTodoData(id), HttpStatus.OK);
+        try {
+            TodoDto todoDto = todoService.readTodoData(id);
+            return ResponseEntity.ok(todoDto);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     @PutMapping("/update/list/data")

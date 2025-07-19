@@ -5,6 +5,7 @@ import com.todo.entity.Todo;
 import com.todo.mapper.TodoMapper;
 import com.todo.repository.TodoRepo;
 import com.todo.service.TodoService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,8 +24,9 @@ public class TodoServeImpl implements TodoService {
 
     @Override
     public TodoDto readTodoData(Long id) {
-        Todo todo = todoRepo.findById(id).orElse(null);
-        return todo == null ? new TodoDto() : TodoMapper.entityTODto(todo);
+        Todo todo = todoRepo.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Todo with id " + id + " not found"));
+        return TodoMapper.entityTODto(todo);
     }
 
     @Override
