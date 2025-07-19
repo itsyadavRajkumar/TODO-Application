@@ -26,7 +26,7 @@ export default function UpdateListData() {
                 if (!res.ok) {
                     throw new Error("Data Not Found!!");
                 }
-                res.text();
+                return res.text();
             })
             .then(json => {
                 if (json === null || Object.keys(json).length === 0) {

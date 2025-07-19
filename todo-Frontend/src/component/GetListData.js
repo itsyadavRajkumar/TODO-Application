@@ -7,6 +7,10 @@ function GetListData() {
     const [errorMessage, setErrorMessage] = useState("");
 
     const getListData = () => {
+        if (!id) {
+            setErrorMessage("Please enter a valid ID.");
+            return;
+        }
 
         setErrorMessage("");
         setResponse(null);
