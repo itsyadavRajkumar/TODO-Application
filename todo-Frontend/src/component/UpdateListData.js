@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export default function UpdateListData() {
     const [id, setId] = useState("");
-    const [tittle, setTittle] = useState("");
+    const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [response, setResponse] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -18,7 +18,7 @@ export default function UpdateListData() {
             },
             body: JSON.stringify({
                 id,
-                tittle,
+                title,
                 description
             })
         })
@@ -52,9 +52,9 @@ export default function UpdateListData() {
             <br></br>
             <input
                 type="text"
-                placeholder="Enter the tittle"
-                value={tittle}
-                onChange={e => setTittle(e.target.value)}
+                placeholder="Enter the title"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
             />
             <br></br>
             <input

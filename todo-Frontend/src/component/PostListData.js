@@ -3,7 +3,7 @@ import { useState } from "react";
 function PostListData() {
 
     const [response, setResponse] = useState(null);
-    const [tittle, setTittle] = useState("");
+    const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
     const postToDOListData = () => {
@@ -14,7 +14,7 @@ function PostListData() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                tittle,
+                title,
                 description
             })
         })
@@ -32,9 +32,9 @@ function PostListData() {
         <div>
             <input
                 type="text"
-                placeholder="Enter the tittle"
-                value={tittle}
-                onChange={e => setTittle(e.target.value)}
+                placeholder="Enter the title"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
             />
             <br></br>
             <input
