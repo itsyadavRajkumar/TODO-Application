@@ -1,6 +1,6 @@
 package com.todo.controller;
 
-import com.todo.entity.Todo;
+import com.todo.dto.TodoDto;
 import com.todo.service.TodoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +17,8 @@ public class TodoController {
     }
 
     @PostMapping("/create/list")
-    public ResponseEntity<?> saveToDoData(@RequestBody Todo todo) {
-        String response = todoService.saveTodoData(todo);
+    public ResponseEntity<?> saveToDoData(@RequestBody TodoDto todoDto) {
+        String response = todoService.saveTodoData(todoDto);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -28,8 +28,8 @@ public class TodoController {
     }
 
     @PutMapping("/update/list/data")
-    public ResponseEntity<?> updateTodoData(@RequestBody Todo todo) {
-        return ResponseEntity.ok(todoService.updateTodoData(todo));
+    public ResponseEntity<?> updateTodoData(@RequestBody TodoDto todoDto) {
+        return ResponseEntity.ok(todoService.updateTodoData(todoDto));
     }
 
     @DeleteMapping("/delete/list/data")

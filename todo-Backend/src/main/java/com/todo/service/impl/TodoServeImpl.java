@@ -1,6 +1,8 @@
 package com.todo.service.impl;
 
+import com.todo.dto.TodoDto;
 import com.todo.entity.Todo;
+import com.todo.mapper.TodoMapper;
 import com.todo.repository.TodoRepo;
 import com.todo.service.TodoService;
 import org.springframework.stereotype.Service;
@@ -14,22 +16,26 @@ public class TodoServeImpl implements TodoService {
     }
 
     @Override
-    public String saveTodoData(Todo todo) {
+    public String saveTodoData(TodoDto todoDto) {
+        Todo todo = TodoMapper.dtoToEntity(todoDto);
         return "Successfully created the TODO with id: " + todoRepo.save(todo).getId();
     }
 
     @Override
-    public Todo readTodoData(Long id) {
-        return todoRepo.findById(id).orElse(null);
+    public TodoDto readTodoData(Long id) {
+        Todo todo = todoRepo.findById(id).orElse(null);
+        return TodoMapper.entityTODto(todo);
     }
 
     @Override
-    public String updateTodoData(Todo todo) {
+    public String updateTodoData(TodoDto todoDto) {
         StringBuilder message = new StringBuilder();
-        todoRepo.findById(todo.getId()).ifPresentOrElse(
+        todoRepo.findById(todoDto.getId()).ifPresentOrElse(
                 existing -> {
+                    Todo todo = TodoMapper.dtoToEntity(todoDto);
+                    todo.setId(todoDto.getId());
                     todoRepo.save(todo);
-                    message.append("Successfully updated the TODO data with id: ").append(todo.getId());
+                    message.append("Successfully updated the TODO data with id: ").append(todoDto.getId());
                 },
                 () -> {
                     message.append("Given ID didn't match any TODO");

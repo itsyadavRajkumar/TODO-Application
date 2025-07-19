@@ -1,10 +1,10 @@
 package com.todo.service;
 
-import com.todo.entity.Todo;
+import com.todo.dto.TodoDto;
 
 public interface TodoService {
-    String saveTodoData(Todo todo);
-    Todo readTodoData(Long id);
-    String updateTodoData(Todo todo);
+    String saveTodoData(TodoDto todoDto);
+    TodoDto readTodoData(Long id);
+    String updateTodoData(TodoDto todoDto);
     String deleteTodoData(Long id);
 }
